@@ -1,0 +1,225 @@
+/* Global reset and body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Headings and nav */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin: 30px 0 10px;
+}
+
+nav {
+    margin-bottom: 30px;
+}
+
+nav a {
+    margin-right: 16px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #000;
+}
+
+/* Summary row and cards */
+.summary-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px 24px;
+    flex: 1;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.card p {
+    font-size: .86rem;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+.card h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+th {
+    text-align: left;
+    padding: 12px 16px;
+    background: #f0f0f0;
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px 16px;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+tr:hover td {
+    background: #fafafa;
+}
+
+/* Green and Red */
+.green {
+    color: #1a7a4a;
+}
+
+.red {
+    color: #c0392b;
+}
+
+/* Forms and inputs */
+form {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+input {
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 150px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+
+/* Buttons and links styled as buttons */
+button,
+a.button {
+    padding: 10px 20px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button:hover,
+a.button:hover {
+    background: #357abd;
+}
+
+
+/* ticker link */
+td a.ticker-link {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+td a.ticker-link:hover {
+    text-decoration: underline;
+}
+
+/* delete/remove links — red */
+td a.delete-link {
+    color: #c0392b;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+td a.delete-link:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    background: #fdecea;
+    color: #c0392b;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    border-left: 4px solid #c0392b;
+}
+
+.card-button {
+    display: block;
+    background: #4a90e2;
+    padding: 20px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #ffffff;
+    text-align: center;
+}
+
+.card-button:hover {
+    transform: translateY(-2px);
+}
+
+.stock-header {
+    margin-bottom: 24px;
+    margin-top: 10px;
+}
+
+.stock-header h1 {
+    font-size: 2rem;
+    margin-bottom: 4px;
+}
+
+#stock-sector {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+#priceChart {
+    max-height: 300px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}

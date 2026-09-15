@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Portfolio Tracker</h1>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/portfolio">Portfolio</a>
+        </nav>
+
+        <h2>My Watchlist</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Current Price</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% if not watchlist %}
+                <tr>
+                    <td colspan="3">No stocks in your watchlist yet.</td>
+                </tr>
+                {% else %}
+                {% for item in watchlist %}
+                <tr>
+                     <td><a href="/stock/{{ item.ticker }}" class="ticker-link">{{ item.ticker}}</a></td>
+                    <td>${{ "%.2f"|format(item.current_price) }}</td>
+                    <td>
+                        <a href="/watchlist/remove/{{ item.ticker }}" class="delete-link">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+
+        <h2>Add to Watchlist</h2>
+
+        {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="/watchlist/add" method="POST">
+            <input type="text" name="ticker" placeholder="Ticker">
+            <button type="submit">Add</button>
+        </form>
+
+    </div>
+</body>
+</html>

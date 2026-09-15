@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ ticker }} — Stock Info</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/watchlist">Watchlist</a>
+        </nav>
+
+        <div class="stock-header">
+            <h1 id="stock-name">{{ ticker }}</h1>
+            <p id="stock-sector"></p>
+        </div>
+
+        <div class="summary-row">
+
+            <div class="card">
+                <p>Price</p>
+                <h2 id="stock-price"></h2>
+            </div>
+
+            <div class="card">
+                <p>52 Week High</p>
+                <h2 id="stock-52high"></h2>
+            </div>
+
+            <div class="card">
+                <p>52 Week Low</p>
+                <h2 id="stock-52low"></h2>
+            </div>
+
+        </div>
+
+        <h2>6 Month Price History</h2>
+        <canvas id="priceChart"></canvas>
+
+    </div>
+
+    <script>
+        const ticker = "{{ ticker }}";
+
+        // fetch stock info and populate cards
+        fetch(`/api/stock/${ticker}`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("stock-name").textContent = data.name;
+                document.getElementById("stock-sector").textContent = data.sector;
+                document.getElementById("stock-price").textContent = "$" + data.price.toFixed(2);
+                document.getElementById("stock-52high").textContent = "$" + data["52w_high"].toFixed(2);
+                document.getElementById("stock-52low").textContent = "$" + data["52w_low"].toFixed(2);
+            });
+
+        // fetch price history and draw chart
+fetch(`/api/history/${ticker}`)
+    .then(res => res.json())
+    .then(data => {
+        const ctx = document.getElementById("priceChart").getContext("2d");
+        new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: data.dates,
+                datasets: [{
+                    label: ticker + " Price",
+                    data: data.prices,
+                    borderColor: "#4a90e2",
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        ticks: { maxTicksLimit: 8 }
+                    },
+                    y: {
+                        ticks: {
+                            callback: val => "$" + val.toFixed(2)
+                        }
+                    }
+                }
+            }
+        });
+    });
+    </script>
+
+    
+</body>
+
+
+
+
+
+
+</html>
